@@ -5,8 +5,9 @@ import { Product } from "./db/products/products.model";
 import { ProductsModule } from './db/products/products.module';
 import { CompaniesModule } from './db/companies/companies.module';
 import { Company } from "./db/companies/companies.model";
-import { ProductScreenshotsModule } from './db/product-screenshots/product-screenshots.module';
-import { ProductScreenshot } from "./db/product-screenshots/product-screenshots.model";
+import { ProductScreenshotsModule } from './db/product-media/product-media.module';
+import { ProductScreenshot } from "./db/product-media/product-media.model";
+import { ProductVideosModule } from './db/product-videos/product-videos.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { ProductScreenshot } from "./db/product-screenshots/product-screenshots.
     ProductsModule,
     CompaniesModule,
     ProductScreenshotsModule,
+    ProductVideosModule,
   ],
 })
 export class AppModule {}
