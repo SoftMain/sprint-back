@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
+import { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
 import { Company } from '../companies/companies.model';
+import { ProductScreenshot } from '../product-screenshots/product-screenshots.model';
 
 interface ProductCreationAttrs {
   name: string;
@@ -31,4 +32,7 @@ export class Product extends Model<Product, ProductCreationAttrs> {
 
   @BelongsTo(() => Company)
   company: Company;
+
+  @HasMany(() => ProductScreenshot)
+  product_screenshots: ProductScreenshot[];
 }

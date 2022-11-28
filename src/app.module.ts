@@ -5,6 +5,8 @@ import { Product } from "./db/products/products.model";
 import { ProductsModule } from './db/products/products.module';
 import { CompaniesModule } from './db/companies/companies.module';
 import { Company } from "./db/companies/companies.model";
+import { ProductScreenshotsModule } from './db/product-screenshots/product-screenshots.module';
+import { ProductScreenshot } from "./db/product-screenshots/product-screenshots.model";
 
 @Module({
   imports: [
@@ -18,11 +20,12 @@ import { Company } from "./db/companies/companies.model";
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [Product, Company],
+      models: [Product, Company, ProductScreenshot],
       autoLoadModels: true
     }),
     ProductsModule,
     CompaniesModule,
+    ProductScreenshotsModule,
   ],
 })
 export class AppModule {}
