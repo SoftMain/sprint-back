@@ -9,7 +9,7 @@ import { ProductReviewsService } from './product-reviews.service';
 export class ProductReviewsController {
   constructor (private productReviewService: ProductReviewsService) {}
 
-  @ApiOperation({ summary: 'Добавить скриншот для продукта'})
+  @ApiOperation({ summary: 'Добавить отзыв на продукт'})
   @ApiResponse({ status: 200, type: ProductReview })
   @Post()
   create(@Body() dto: CreateProductReviewDto) {

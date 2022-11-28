@@ -9,6 +9,7 @@ import { ProductMediaModule } from "./db/product-media/product-media.module";
 import { ProductMedia } from "./db/product-media/product-media.model";
 import { ProductReviewsModule } from "./db/product-reviews/product-reviews.module";
 import { ProductReview } from "./db/product-reviews/product-reviews.model";
+import { CategoriesModule } from './db/categories/categories.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { ProductReview } from "./db/product-reviews/product-reviews.model";
     CompaniesModule,
     ProductMediaModule,
     ProductReviewsModule,
+    CategoriesModule,
   ],
 })
 export class AppModule {}
