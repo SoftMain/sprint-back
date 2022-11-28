@@ -10,6 +10,8 @@ import { ProductMedia } from "./db/product-media/product-media.model";
 import { ProductReviewsModule } from "./db/product-reviews/product-reviews.module";
 import { ProductReview } from "./db/product-reviews/product-reviews.model";
 import { CategoriesModule } from './db/categories/categories.module';
+import { Category } from "./db/categories/categories.model";
+import { ProductCategories } from "./db/categories/product-categories.model";
 
 @Module({
   imports: [
@@ -23,7 +25,7 @@ import { CategoriesModule } from './db/categories/categories.module';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [Product, Company, ProductMedia, ProductReview],
+      models: [Product, Company, ProductMedia, ProductReview, Category, ProductCategories],
       autoLoadModels: true,
     }),
     ProductsModule,
