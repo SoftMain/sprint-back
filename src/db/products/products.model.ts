@@ -9,6 +9,8 @@ import { ProductCertificates } from '../certificates/product-certificates.model'
 import { Company } from '../companies/companies.model';
 import { Feature } from '../features/features.model';
 import { ProductFeatures } from '../features/product-features.model';
+import { Language } from '../languages/languages.model';
+import { ProductLanguages } from '../languages/product-languages.model';
 import { ProductMedia } from '../product-media/product-media.model';
 import { ProductReview } from '../product-reviews/product-reviews.model';
 
@@ -59,4 +61,7 @@ export class Product extends Model<Product, ProductCreationAttrs> {
 
   @BelongsToMany(() => Feature, () => ProductFeatures)
   features: Feature[];
+
+  @BelongsToMany(() => Language, () => ProductLanguages)
+  languages: Language[];
 }

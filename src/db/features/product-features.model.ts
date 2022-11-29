@@ -9,10 +9,10 @@ export class ProductFeatures extends Model<ProductFeatures> {
   id: number;
 
   @ForeignKey(() => Product)
-  @Column({ type: DataType.INTEGER, unique: true, allowNull: false })
+  @Column({ type: DataType.INTEGER })
   product_id: number;
 
   @ForeignKey(() => Feature)
-  @Column( {type: DataType.INTEGER, allowNull: true })
+  @Column( {type: DataType.INTEGER })
   feature_id: number;
 }

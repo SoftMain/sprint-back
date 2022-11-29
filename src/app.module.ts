@@ -23,6 +23,8 @@ import { ProductCertificates } from "./db/certificates/product-certificates.mode
 import { Certificate } from "./db/certificates/certificates.model";
 import { ProductFeatures } from "./db/features/product-features.model";
 import { Feature } from "./db/features/features.model";
+import { Language } from "./db/languages/languages.model";
+import { ProductLanguages } from "./db/languages/product-languages.model";
 
 @Module({
   imports: [
@@ -49,6 +51,8 @@ import { Feature } from "./db/features/features.model";
         ProductCertificates,
         Feature,
         ProductFeatures,
+        Language,
+        ProductLanguages
       ],
       autoLoadModels: true,
     }),

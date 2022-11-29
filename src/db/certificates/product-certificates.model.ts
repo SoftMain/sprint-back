@@ -9,10 +9,10 @@ export class ProductCertificates extends Model<ProductCertificates> {
   id: number;
 
   @ForeignKey(() => Product)
-  @Column({ type: DataType.INTEGER, unique: true, allowNull: false })
+  @Column({ type: DataType.INTEGER })
   product_id: number;
 
   @ForeignKey(() => Certificate)
-  @Column( {type: DataType.INTEGER, allowNull: true })
+  @Column( {type: DataType.INTEGER })
   certificate_id: number;
 }
