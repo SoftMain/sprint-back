@@ -25,6 +25,8 @@ import { ProductFeatures } from "./db/features/product-features.model";
 import { Feature } from "./db/features/features.model";
 import { Language } from "./db/languages/languages.model";
 import { ProductLanguages } from "./db/languages/product-languages.model";
+import { Platform } from "./db/platforms/platforms.model";
+import { ProductPlatforms } from "./db/platforms/product-platforms.model";
 
 @Module({
   imports: [
@@ -52,7 +54,9 @@ import { ProductLanguages } from "./db/languages/product-languages.model";
         Feature,
         ProductFeatures,
         Language,
-        ProductLanguages
+        ProductLanguages,
+        Platform,
+        ProductPlatforms
       ],
       autoLoadModels: true,
     }),

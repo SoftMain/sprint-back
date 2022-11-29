@@ -11,6 +11,8 @@ import { Feature } from '../features/features.model';
 import { ProductFeatures } from '../features/product-features.model';
 import { Language } from '../languages/languages.model';
 import { ProductLanguages } from '../languages/product-languages.model';
+import { Platform } from '../platforms/platforms.model';
+import { ProductPlatforms } from '../platforms/product-platforms.model';
 import { ProductMedia } from '../product-media/product-media.model';
 import { ProductReview } from '../product-reviews/product-reviews.model';
 
@@ -64,4 +66,7 @@ export class Product extends Model<Product, ProductCreationAttrs> {
 
   @BelongsToMany(() => Language, () => ProductLanguages)
   languages: Language[];
+
+  @BelongsToMany(() => Platform, () => ProductPlatforms)
+  platforms: Language[];
 }
