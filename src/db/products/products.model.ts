@@ -4,6 +4,8 @@ import { Analog } from '../analogs/analogs.model';
 import { ProductAnalogs } from '../analogs/product-analogs.model';
 import { Category } from '../categories/categories.model';
 import { ProductCategories } from '../categories/product-categories.model';
+import { Certificate } from '../certificates/certificates.model';
+import { ProductCertificates } from '../certificates/product-certificates.model';
 import { Company } from '../companies/companies.model';
 import { ProductMedia } from '../product-media/product-media.model';
 import { ProductReview } from '../product-reviews/product-reviews.model';
@@ -49,4 +51,9 @@ export class Product extends Model<Product, ProductCreationAttrs> {
 
   @BelongsToMany(() => Analog, () => ProductAnalogs)
   analogs: Analog[];
+
+  @BelongsToMany(() => Certificate, () => ProductCertificates)
+  certificates: Certificate[];
+  //@BelongsToMany(() => Certificate, () => ProductCertificates)
+  // certificates: Certificate[];
 }

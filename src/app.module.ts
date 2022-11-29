@@ -19,6 +19,8 @@ import { AnalogsModule } from "./db/analogs/analogs.module";
 import { PlatformsModule } from "./db/platforms/platforms.module";
 import { Analog } from "./db/analogs/analogs.model";
 import { ProductAnalogs } from "./db/analogs/product-analogs.model";
+import { ProductCertificates } from "./db/certificates/product-certificates.model";
+import { Certificate } from "./db/certificates/certificates.model";
 
 @Module({
   imports: [
@@ -41,6 +43,8 @@ import { ProductAnalogs } from "./db/analogs/product-analogs.model";
         ProductCategories,
         Analog,
         ProductAnalogs,
+        Certificate,
+        ProductCertificates
       ],
       autoLoadModels: true,
     }),

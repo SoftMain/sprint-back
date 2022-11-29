@@ -1,9 +1,10 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Analog } from './analogs.model';
 import { AnalogsService } from './analogs.service';
 import { CreateAnalogDto } from './dto/create-analogs.dto';
 
+@ApiTags('Аналоги')
 @Controller('analogs')
 export class AnalogsController {
   constructor(private analogService: AnalogsService) {}
