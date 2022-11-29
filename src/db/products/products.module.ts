@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { ProductAnalogs } from '../analogs/product-analogs.model';
 import { Category } from '../categories/categories.model';
 import { CategoriesModule } from '../categories/categories.module';
 import { ProductCategories } from '../categories/product-categories.model';
@@ -11,7 +12,7 @@ import { ProductsService } from './products.service';
   controllers: [ProductsController],
   providers: [ProductsService],
   imports: [
-    SequelizeModule.forFeature([Product, Category, ProductCategories]),
+    SequelizeModule.forFeature([Product, Category, ProductCategories, ProductAnalogs]),
     CategoriesModule
   ]
 })

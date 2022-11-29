@@ -1,10 +1,9 @@
 import { Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
 import { Product } from '../products/products.model';
-import { Category } from './categories.model';
+import { Analog } from './analogs.model';
 
-
-@Table({ tableName: 'product_categories', createdAt: false, updatedAt: false })
-export class ProductCategories extends Model<ProductCategories> {
+@Table({ tableName: 'product_analogs', createdAt: false, updatedAt: false })
+export class ProductAnalogs extends Model<ProductAnalogs> {
   @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
   id: number;
 
@@ -12,7 +11,7 @@ export class ProductCategories extends Model<ProductCategories> {
   @Column({ type: DataType.INTEGER, unique: true, allowNull: false })
   product_id: number;
 
-  @ForeignKey(() => Category)
+  @ForeignKey(() => Analog)
   @Column( {type: DataType.INTEGER, allowNull: true })
-  category_id: number;
+  analog_id: number;
 }

@@ -9,9 +9,16 @@ import { ProductMediaModule } from "./db/product-media/product-media.module";
 import { ProductMedia } from "./db/product-media/product-media.model";
 import { ProductReviewsModule } from "./db/product-reviews/product-reviews.module";
 import { ProductReview } from "./db/product-reviews/product-reviews.model";
-import { CategoriesModule } from './db/categories/categories.module';
+import { CategoriesModule } from "./db/categories/categories.module";
 import { Category } from "./db/categories/categories.model";
 import { ProductCategories } from "./db/categories/product-categories.model";
+import { FeaturesModule } from "./db/features/features.module";
+import { LanguagesModule } from "./db/languages/languages.module";
+import { CertificatesModule } from "./db/certificates/certificates.module";
+import { AnalogsModule } from "./db/analogs/analogs.module";
+import { PlatformsModule } from "./db/platforms/platforms.module";
+import { Analog } from "./db/analogs/analogs.model";
+import { ProductAnalogs } from "./db/analogs/product-analogs.model";
 
 @Module({
   imports: [
@@ -25,7 +32,16 @@ import { ProductCategories } from "./db/categories/product-categories.model";
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [Product, Company, ProductMedia, ProductReview, Category, ProductCategories],
+      models: [
+        Product,
+        Company,
+        ProductMedia,
+        ProductReview,
+        Category,
+        ProductCategories,
+        Analog,
+        ProductAnalogs,
+      ],
       autoLoadModels: true,
     }),
     ProductsModule,
@@ -33,6 +49,11 @@ import { ProductCategories } from "./db/categories/product-categories.model";
     ProductMediaModule,
     ProductReviewsModule,
     CategoriesModule,
+    FeaturesModule,
+    LanguagesModule,
+    CertificatesModule,
+    AnalogsModule,
+    PlatformsModule,
   ],
 })
 export class AppModule {}
