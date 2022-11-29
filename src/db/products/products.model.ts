@@ -7,6 +7,8 @@ import { ProductCategories } from '../categories/product-categories.model';
 import { Certificate } from '../certificates/certificates.model';
 import { ProductCertificates } from '../certificates/product-certificates.model';
 import { Company } from '../companies/companies.model';
+import { Feature } from '../features/features.model';
+import { ProductFeatures } from '../features/product-features.model';
 import { ProductMedia } from '../product-media/product-media.model';
 import { ProductReview } from '../product-reviews/product-reviews.model';
 
@@ -54,6 +56,7 @@ export class Product extends Model<Product, ProductCreationAttrs> {
 
   @BelongsToMany(() => Certificate, () => ProductCertificates)
   certificates: Certificate[];
-  //@BelongsToMany(() => Certificate, () => ProductCertificates)
-  // certificates: Certificate[];
+
+  @BelongsToMany(() => Feature, () => ProductFeatures)
+  features: Feature[];
 }

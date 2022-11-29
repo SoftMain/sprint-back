@@ -21,6 +21,8 @@ import { Analog } from "./db/analogs/analogs.model";
 import { ProductAnalogs } from "./db/analogs/product-analogs.model";
 import { ProductCertificates } from "./db/certificates/product-certificates.model";
 import { Certificate } from "./db/certificates/certificates.model";
+import { ProductFeatures } from "./db/features/product-features.model";
+import { Feature } from "./db/features/features.model";
 
 @Module({
   imports: [
@@ -44,7 +46,9 @@ import { Certificate } from "./db/certificates/certificates.model";
         Analog,
         ProductAnalogs,
         Certificate,
-        ProductCertificates
+        ProductCertificates,
+        Feature,
+        ProductFeatures,
       ],
       autoLoadModels: true,
     }),

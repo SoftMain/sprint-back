@@ -4,7 +4,7 @@ import { Certificate } from './certificates.model';
 import { CertificatesService } from './certificates.service';
 import { CreateCertificateDto } from './dto/create-certificates.dto';
 
-@ApiTags('Сертиификации')
+@ApiTags('Сертификации')
 @Controller('certificates')
 export class CertificatesController {
   constructor(private certificateService: CertificatesService) {}

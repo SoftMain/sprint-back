@@ -13,11 +13,11 @@ export class CertificatesService {
   }
 
   async getAllCertificates() {
-    const certificate = await this.certificateRepository.findAll();
-    return certificate;
+    const certificates = await this.certificateRepository.findAll();
+    return certificates;
   }
 
-  async getCategoryByName(value: string) {
+  async getCertificateByName(value: string) {
     const certificate = await this.certificateRepository.findOne({ where: { name: value} })
     return certificate;
   }
