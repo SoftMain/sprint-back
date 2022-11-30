@@ -57,6 +57,6 @@ jobs:
           port: 22
           script: |
             sudo docker-compose pull
-            sudo docker stop front
+            sudo docker stop back
             sudo docker rm back
             sudo docker-compose up -d
