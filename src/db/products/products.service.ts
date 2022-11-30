@@ -12,8 +12,6 @@ export class ProductsService {
 
   async createProduct(dto: CreateProductDto) {
     const product = await this.productRepository.create(dto);
-    const category = await this.categoryService.getCategoryByName("Антивирусы")
-    await product.$set('categories', [category.id])
     return product;
   }
 
