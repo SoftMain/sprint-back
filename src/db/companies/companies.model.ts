@@ -26,7 +26,7 @@ export class Company extends Model<Company, CompaniesCreationAttrs> {
 
   @ApiProperty({ example: 'Подтверждение', description: 'Подтверждение компании' })
   @Column({ type: DataType.BOOLEAN, defaultValue: false })
-  verity: boolean;
+  verify: boolean;
 
   @HasMany(() => Product)
   products: Product[];

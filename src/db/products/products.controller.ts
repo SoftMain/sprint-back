@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateProductDto } from './dto/create-product.dto';
 import { Product } from './products.model';
@@ -20,7 +20,7 @@ export class ProductsController {
   @ApiOperation({ summary: 'Получить все продукты'})
   @ApiResponse({ status: 200, type: [Product] })
   @Get()
-  getAll() {
-    return this.productsService.getAllProducts();
+  async getAll(@Query() query) {
+    return this.productsService.getAllProducts(query);
   }
 }
