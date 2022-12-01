@@ -20,6 +20,10 @@ export class Company extends Model<Company, CompaniesCreationAttrs> {
   @Column( {type: DataType.STRING, allowNull: true })
   description: string;
 
+  @ApiProperty({ example: 'Офф. сайт', description: 'Оффициальный сайт' })
+  @Column( {type: DataType.STRING, allowNull: true })
+  url: string;
+
   @ApiProperty({ example: 'Подтверждение', description: 'Подтверждение компании' })
   @Column({ type: DataType.BOOLEAN, defaultValue: false })
   verity: boolean;

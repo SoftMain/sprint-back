@@ -32,7 +32,7 @@ export class Product extends Model<Product, ProductCreationAttrs> {
   name: string;
   
   @ApiProperty({ example: 'Описание продукта', description: 'Описание продукта' })
-  @Column( {type: DataType.STRING, allowNull: true })
+  @Column( {type: DataType.STRING(1000), allowNull: true })
   description: string;
   
   @ApiProperty({ example: 'false', description: 'Имеет ли мобильное приложение' })
