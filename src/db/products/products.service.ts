@@ -37,41 +37,43 @@ export class ProductsService {
   async getFilteredProducts(query) {
     const products = await this.productRepository.findAndCountAll({
       include: [
-        {
-          model: Company,
-        },
+        { model: Company },
         { model: ProductReview },
         {
           model: Analog,
           where: {
             id: {
-              [Op.or]: query._selected.analogs,
+              [Op.or]: query._selected?.analogs ? query._selected.analogs : [],
             },
           },
+          required: false
         },
         {
           model: Certificate,
           where: {
             id: {
-              [Op.or]: query._selected.certificates,
+              [Op.or]: query._selected?.certificates ? query._selected.certificates : [],
             },
           },
+          required: false
         },
         {
           model: Platform,
           where: {
             id: {
-              [Op.or]: query._selected.platforms,
+              [Op.or]: query._selected?.platforms ? query._selected.platforms : [],
             },
           },
+          required: false
         },
         {
           model: Language,
           where: {
             id: {
-              [Op.or]: query._selected.languages,
+              [Op.or]: query._selected?.languages ? query._selected.languages : [],
             },
           },
+          required: false
         },
       ],
       limit: query._limit,
@@ -80,7 +82,6 @@ export class ProductsService {
           ? 0
           : (Number(query._page) - 1) * Number(query._limit),
     });
-
     return products;
   }
 }
