@@ -1,7 +1,12 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
+import { Op } from "sequelize";
+import { Analog } from "../analogs/analogs.model";
 import { CategoriesService } from "../categories/categories.service";
+import { Certificate } from "../certificates/certificates.model";
 import { Company } from "../companies/companies.model";
+import { Language } from "../languages/languages.model";
+import { Platform } from "../platforms/platforms.model";
 import { ProductReview } from "../product-reviews/product-reviews.model";
 import { CreateProductDto } from "./dto/create-product.dto";
 import { Product } from "./products.model";
@@ -22,8 +27,77 @@ export class ProductsService {
     const products = await this.productRepository.findAndCountAll({
       include: [{ model: Company }, { model: ProductReview }],
       limit: query._limit,
-      offset: Number(query._page) === 1 ? 0 : (Number(query._page) - 1) * Number(query._limit),
+      offset:
+        Number(query._page) === 1
+          ? 0
+          : (Number(query._page) - 1) * Number(query._limit),
     });
     return products;
   }
+  async getFilteredProducts(query) {
+    const products = await this.productRepository.findAndCountAll({
+      include: [
+        {
+          model: Company,
+        },
+        { model: ProductReview },
+        {
+          model: Analog,
+          where: {
+            id: {
+              [Op.or]: query._selected.analogs,
+            },
+          },
+        },
+        {
+          model: Certificate,
+          where: {
+            id: {
+              [Op.or]: query._selected.certificates,
+            },
+          },
+        },
+        {
+          model: Platform,
+          where: {
+            id: {
+              [Op.or]: query._selected.platforms,
+            },
+          },
+        },
+        {
+          model: Language,
+          where: {
+            id: {
+              [Op.or]: query._selected.languages,
+            },
+          },
+        },
+      ],
+      limit: query._limit,
+      offset:
+        Number(query._page) === 1
+          ? 0
+          : (Number(query._page) - 1) * Number(query._limit),
+    });
+
+    return products;
+  }
 }
+
+// {
+//   model: Platform,
+//   where: {
+//     id: {
+//       [Op.in]: query._selected.analogs,
+//     },
+//   },
+// },
+// {
+//   model: Language,
+//   where: {
+//     id: {
+//       [Op.in]: query._selected.analogs,
+//     },
+//   },
+// },

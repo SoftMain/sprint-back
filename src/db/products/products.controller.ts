@@ -23,4 +23,11 @@ export class ProductsController {
   async getAll(@Query() query) {
     return this.productsService.getAllProducts(query);
   }
+
+  @ApiOperation({ summary: 'Получить отфильтрованные все продукты'})
+  @ApiResponse({ status: 200, type: [Product] })
+  @Get('filtered')
+  async getFilteredAll(@Query() query) {
+    return this.productsService.getFilteredProducts(query);
+  }
 }
