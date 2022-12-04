@@ -85,20 +85,3 @@ export class ProductsService {
     return products;
   }
 }
-
-// {
-//   model: Platform,
-//   where: {
-//     id: {
-//       [Op.in]: query._selected.analogs,
-//     },
-//   },
-// },
-// {
-//   model: Language,
-//   where: {
-//     id: {
-//       [Op.in]: query._selected.analogs,
-//     },
-//   },
-// },
