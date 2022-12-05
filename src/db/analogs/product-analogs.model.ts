@@ -12,6 +12,6 @@ export class ProductAnalogs extends Model<ProductAnalogs> {
   product_id: number;
 
   @ForeignKey(() => Analog)
-  @Column( {type: DataType.INTEGER })
+  @Column({ type: DataType.INTEGER })
   analog_id: number;
 }

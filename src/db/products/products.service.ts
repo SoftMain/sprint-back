@@ -23,6 +23,12 @@ export class ProductsService {
     return product;
   }
 
+  async getProductById(params) {
+    console.log(params);
+    const product = await this.productRepository.findByPk(params.id, { include: { all: true }});
+    return product;
+  }
+
   async getAllProducts(query) {
     const products = await this.productRepository.findAndCountAll({
       include: [{ model: Company }, { model: ProductReview }],
@@ -34,48 +40,56 @@ export class ProductsService {
     });
     return products;
   }
+  
   async getFilteredProducts(query) {
+    let filter = [];
+
+    if (query._selected?.analogs) {
+      filter.push({
+        model: Analog,
+        where: {
+          id: {
+            [Op.in]: query._selected.analogs,
+          },
+        },
+      });
+    }
+    if (query._selected?.certificates) {
+      filter.push({
+        model: Certificate,
+        where: {
+          id: {
+            [Op.in]: query._selected.certificates,
+          },
+        },
+      });
+    }
+    if (query._selected?.platforms) {
+      filter.push({
+        model: Platform,
+        where: {
+          id: {
+            [Op.in]: query._selected.platforms,
+          },
+        },
+      });
+    }
+    if (query._selected?.languages) {
+      filter.push({
+        model: Language,
+        where: {
+          id: {
+            [Op.in]: query._selected.languages,
+          },
+        },
+      });
+    }
+
+    filter.push({ model: Company });
+    filter.push({ model: ProductReview });
+    
     const products = await this.productRepository.findAndCountAll({
-      include: [
-        { model: Company },
-        { model: ProductReview },
-        {
-          model: Analog,
-          where: {
-            id: {
-              [Op.or]: query._selected?.analogs ? query._selected.analogs : [],
-            },
-          },
-          required: false
-        },
-        {
-          model: Certificate,
-          where: {
-            id: {
-              [Op.or]: query._selected?.certificates ? query._selected.certificates : [],
-            },
-          },
-          required: false
-        },
-        {
-          model: Platform,
-          where: {
-            id: {
-              [Op.or]: query._selected?.platforms ? query._selected.platforms : [],
-            },
-          },
-          required: false
-        },
-        {
-          model: Language,
-          where: {
-            id: {
-              [Op.or]: query._selected?.languages ? query._selected.languages : [],
-            },
-          },
-          required: false
-        },
-      ],
+      include: filter,
       limit: query._limit,
       offset:
         Number(query._page) === 1
