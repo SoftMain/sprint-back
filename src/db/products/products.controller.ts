@@ -31,8 +31,15 @@ export class ProductsController {
     return this.productsService.getFilteredProducts(query);
   }
 
-  @ApiOperation({ summary: 'Получить продукт по id'})
+  @ApiOperation({ summary: 'Поиск продукта по строке'})
   @ApiResponse({ status: 200, type: [Product] })
+  @Get('search')
+  async searchProducts(@Query() query) {
+    return this.productsService.searchProducts(query);
+  }
+
+  @ApiOperation({ summary: 'Получить продукт по id'})
+  @ApiResponse({ status: 200, type: Product })
   @Get(':id')
   async getProductById(@Param() params) {
     return this.productsService.getProductById(params);

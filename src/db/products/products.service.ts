@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
-import { Op } from "sequelize";
+import { Op, Sequelize } from "sequelize";
 import { Analog } from "../analogs/analogs.model";
 import { CategoriesService } from "../categories/categories.service";
 import { Certificate } from "../certificates/certificates.model";
@@ -25,7 +25,9 @@ export class ProductsService {
 
   async getProductById(params) {
     console.log(params);
-    const product = await this.productRepository.findByPk(params.id, { include: { all: true }});
+    const product = await this.productRepository.findByPk(params.id, {
+      include: { all: true },
+    });
     return product;
   }
 
@@ -40,7 +42,7 @@ export class ProductsService {
     });
     return products;
   }
-  
+
   async getFilteredProducts(query) {
     let filter = [];
 
@@ -87,7 +89,7 @@ export class ProductsService {
 
     filter.push({ model: Company });
     filter.push({ model: ProductReview });
-    
+
     const products = await this.productRepository.findAndCountAll({
       include: filter,
       limit: query._limit,
@@ -95,6 +97,24 @@ export class ProductsService {
         Number(query._page) === 1
           ? 0
           : (Number(query._page) - 1) * Number(query._limit),
+    });
+    return products;
+  }
+
+  async searchProducts(query) {
+    if (!query._string || query?._string?.length < 3) return; 
+    const findString = query._string.toLowerCase();
+    const products = await this.productRepository.findAll({
+      where: {
+        [Op.or]: [
+          Sequelize.where(Sequelize.fn('lower', Sequelize.col('name')), {
+             [Op.like]: `%${findString}%`,
+          }),
+          Sequelize.where(Sequelize.fn('lower', Sequelize.col('description')), {
+            [Op.like]: `%${findString}%`,
+         }),
+        ],
+      },
     });
     return products;
   }
