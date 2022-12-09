@@ -115,6 +115,7 @@ export class ProductsService {
          }),
         ],
       },
+      limit: 6,
     });
     return products;
   }
